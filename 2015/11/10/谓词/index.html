@@ -28,7 +28,7 @@ between:左边的表达式等于右边的表达式的值或者介于它们之间
 =,==:等于
 !=,&amp;lt;&amp;gt;:不等于
 between:左边的表达式等于右边的表达式的值或者介于它们之间。右边是一个有两个指定上限和下限的数值的数列（指定顺序的数列）。比如，1 BETWEEN { 0 , 33 }，或者$INPUT BETWEEN { $LOWER, $UPPER">
-<meta property="og:updated_time" content="2016-04-02T14:05:21.000Z">
+<meta property="og:updated_time" content="2016-05-19T09:43:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="谓词">
 <meta name="twitter:description" content="谓词一，谓词语法介绍：1，比较运算符：
@@ -57,7 +57,7 @@ between:左边的表达式等于右边的表达式的值或者介于它们之间
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
 			
-			<img lazy-src="https://github.com/AlexCzs/AlexCzs.github.io/blob/master/img/kl.png?raw=true" class="js-avatar">
+			<img lazy-src="http://p2.gexing.com/touxiang/20120727/1637/5012536600562_200x200_3.jpg" class="js-avatar">
 			
 		</a>
 
@@ -104,7 +104,7 @@ between:左边的表达式等于右边的表达式的值或者介于它们之间
 						<li>Links</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -189,7 +189,7 @@ between:左边的表达式等于右边的表达式的值或者介于它们之间
 		<header id="header" class="inner">
 			<div class="profilepic">
 			
-				<img lazy-src="https://github.com/AlexCzs/AlexCzs.github.io/blob/master/img/kl.png?raw=true" class="js-avatar">
+				<img lazy-src="http://p2.gexing.com/touxiang/20120727/1637/5012536600562_200x200_3.jpg" class="js-avatar">
 			
 			</div>
 			<hgroup>
@@ -277,7 +277,7 @@ between:左边的表达式等于右边的表达式的值或者介于它们之间
 <li>not / !:非 </li>
 </ul>
 <h6 id="例子：年龄大于三岁或名字叫“zhang1”的，注意：字符串的值需要用单引号引起来，否则会报错，错误信息是：this-class-is-not-key-value-coding-compliant-for-the-key-zhang1"><a href="#例子：年龄大于三岁或名字叫“zhang1”的，注意：字符串的值需要用单引号引起来，否则会报错，错误信息是：this-class-is-not-key-value-coding-compliant-for-the-key-zhang1" class="headerlink" title="例子：年龄大于三岁或名字叫“zhang1”的，注意：字符串的值需要用单引号引起来，否则会报错，错误信息是：this class is not key value coding-compliant for the key zhang1."></a>例子：年龄大于三岁或名字叫“zhang1”的，注意：字符串的值需要用单引号引起来，否则会报错，错误信息是：this class is not key value coding-compliant for the key zhang1.</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSPredicate *predicate = [NSPredicate predicateWithFormat:@&quot;age &gt; 3 || name = &apos;zhang1&apos;&quot;];</span><br></pre></td></tr></table></figure>
-<h3 id="OC中谓词的简单使用"><a href="#OC中谓词的简单使用" class="headerlink" title="OC中谓词的简单使用"></a>OC中谓词的简单使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 1.创建谓词</span><br><span class="line">NSPredicate *cate = [NSPredicate predicateWithFormat:@&quot;age CONTAINS[c] 23 || &quot;];</span><br><span class="line">// 2.获取数据</span><br><span class="line">NSArray *arr;</span><br><span class="line">// 3.过滤数据</span><br><span class="line">NSArray *cateArray = [arr filteredArrayUsingPredicate:cate];</span><br></pre></td></tr></table></figure>
+<h3 id="OC中谓词的简单使用"><a href="#OC中谓词的简单使用" class="headerlink" title="OC中谓词的简单使用"></a>OC中谓词的简单使用</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.创建谓词</span></span><br><span class="line"><span class="built_in">NSPredicate</span> *cate = [<span class="built_in">NSPredicate</span> predicateWithFormat:<span class="string">@"age CONTAINS[c] 23 || "</span>];</span><br><span class="line"><span class="comment">// 2.获取数据</span></span><br><span class="line"><span class="built_in">NSArray</span> *arr;</span><br><span class="line"><span class="comment">// 3.过滤数据</span></span><br><span class="line"><span class="built_in">NSArray</span> *cateArray = [arr filteredArrayUsingPredicate:cate];</span><br></pre></td></tr></table></figure>
 
       
     </div>

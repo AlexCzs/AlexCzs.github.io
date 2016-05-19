@@ -32,7 +32,7 @@
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
 			
-			<img lazy-src="https://github.com/AlexCzs/AlexCzs.github.io/blob/master/img/kl.png?raw=true" class="js-avatar">
+			<img lazy-src="http://p2.gexing.com/touxiang/20120727/1637/5012536600562_200x200_3.jpg" class="js-avatar">
 			
 		</a>
 
@@ -79,7 +79,7 @@
 						<li>Links</li>
 						
 						
-						<li>Über</li>
+						<li>About</li>
 						
 					</ul>
 				</div>
@@ -164,7 +164,7 @@
 		<header id="header" class="inner">
 			<div class="profilepic">
 			
-				<img lazy-src="https://github.com/AlexCzs/AlexCzs.github.io/blob/master/img/kl.png?raw=true" class="js-avatar">
+				<img lazy-src="http://p2.gexing.com/touxiang/20120727/1637/5012536600562_200x200_3.jpg" class="js-avatar">
 			
 			</div>
 			<hgroup>
@@ -489,7 +489,7 @@
 <li>not / !:非 </li>
 </ul>
 <h6 id="例子：年龄大于三岁或名字叫“zhang1”的，注意：字符串的值需要用单引号引起来，否则会报错，错误信息是：this-class-is-not-key-value-coding-compliant-for-the-key-zhang1"><a href="#例子：年龄大于三岁或名字叫“zhang1”的，注意：字符串的值需要用单引号引起来，否则会报错，错误信息是：this-class-is-not-key-value-coding-compliant-for-the-key-zhang1" class="headerlink" title="例子：年龄大于三岁或名字叫“zhang1”的，注意：字符串的值需要用单引号引起来，否则会报错，错误信息是：this class is not key value coding-compliant for the key zhang1."></a>例子：年龄大于三岁或名字叫“zhang1”的，注意：字符串的值需要用单引号引起来，否则会报错，错误信息是：this class is not key value coding-compliant for the key zhang1.</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSPredicate *predicate = [NSPredicate predicateWithFormat:@&quot;age &gt; 3 || name = &apos;zhang1&apos;&quot;];</span><br></pre></td></tr></table></figure>
-<h3 id="OC中谓词的简单使用"><a href="#OC中谓词的简单使用" class="headerlink" title="OC中谓词的简单使用"></a>OC中谓词的简单使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 1.创建谓词</span><br><span class="line">NSPredicate *cate = [NSPredicate predicateWithFormat:@&quot;age CONTAINS[c] 23 || &quot;];</span><br><span class="line">// 2.获取数据</span><br><span class="line">NSArray *arr;</span><br><span class="line">// 3.过滤数据</span><br><span class="line">NSArray *cateArray = [arr filteredArrayUsingPredicate:cate];</span><br></pre></td></tr></table></figure>
+<h3 id="OC中谓词的简单使用"><a href="#OC中谓词的简单使用" class="headerlink" title="OC中谓词的简单使用"></a>OC中谓词的简单使用</h3><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.创建谓词</span></span><br><span class="line"><span class="built_in">NSPredicate</span> *cate = [<span class="built_in">NSPredicate</span> predicateWithFormat:<span class="string">@"age CONTAINS[c] 23 || "</span>];</span><br><span class="line"><span class="comment">// 2.获取数据</span></span><br><span class="line"><span class="built_in">NSArray</span> *arr;</span><br><span class="line"><span class="comment">// 3.过滤数据</span></span><br><span class="line"><span class="built_in">NSArray</span> *cateArray = [arr filteredArrayUsingPredicate:cate];</span><br></pre></td></tr></table></figure>
 
       
     </div>
