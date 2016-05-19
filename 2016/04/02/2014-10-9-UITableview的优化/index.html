@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>UITableView的优化 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="UITableView的优化1- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+这个代理方法的实现，在可见的页面是会重复绘制页面的，所以绝大部分人都会在这里做一些代码处理比如：
+12static NSString *CellIdentifier">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UITableView的优化">
+<meta property="og:url" content="http://yoursite.com/2016/04/02/2014-10-9-UITableview的优化/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="UITableView的优化1- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+这个代理方法的实现，在可见的页面是会重复绘制页面的，所以绝大部分人都会在这里做一些代码处理比如：
+12static NSString *CellIdentifier">
+<meta property="og:updated_time" content="2016-04-02T14:36:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UITableView的优化">
+<meta name="twitter:description" content="UITableView的优化1- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+这个代理方法的实现，在可见的页面是会重复绘制页面的，所以绝大部分人都会在这里做一些代码处理比如：
+12static NSString *CellIdentifier">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2014-10-9-UITableview的优化" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/04/02/2014-10-9-UITableview的优化/" class="article-date">
+  <time datetime="2016-04-02T14:23:51.000Z" itemprop="datePublished">2016-04-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      UITableView的优化
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="UITableView的优化"><a href="#UITableView的优化" class="headerlink" title="UITableView的优化"></a>UITableView的优化</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath</span><br></pre></td></tr></table></figure>
+<p>这个代理方法的实现，在可见的页面是会重复绘制页面的，所以绝大部分人都会在这里做一些代码处理<br>比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">static NSString *CellIdentifier = @&quot;CellID&quot;;</span><br><span class="line">UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];</span><br></pre></td></tr></table></figure>
+<p>以上举例代码是可以让cell被重复使用，一般大概只会在可见页面部分的几个cell会被new下，其他的全部重复使用前面已经有的cell对象，到时候只要填充数据就可以了</p>
+<p>那么仅仅只是如此，恐怕现在的cell自定义的页面不只是文本那么简单，多多少少都会带有一些图片吧，当你下滑时候是否发现有那么一点点的卡顿现成，特别是网络不好，而且还是在iPhone4上跑的就会更明显了</p>
+<p>那么在cell里面异步加载图片是个程序员都会想到，但是如果你给每个循环对象都加上异步加载，并且下滑的时候，这一操作将会被执行，虽然是异步，但是一个app里面的线程过多也会卡顿的，特别是在下滑操作的时候给每个图片进行异步加载</p>
+<p>那么这里可以利用UIScrollViewDelegate代理很好的解决这问题:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate</span><br><span class="line">- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView</span><br></pre></td></tr></table></figure>
+<p>可以识别tableview禁止或者减速滑动结束的时候进行异步加载图片</p>
+<p>以下方法来执行异步加载操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//获取可见部分的对象</span><br><span class="line"> NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];</span><br><span class="line">  for (NSIndexPath *indexPath in visiblePaths)</span><br><span class="line">  &#123;</span><br><span class="line">     //获取的dataSource里面的对象，并且判断加载完成的不需要再次异步加载</span><br><span class="line">       &lt;code&gt;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>同时在cell绘制中也做限制</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath</span><br><span class="line">		if (self.tableView.dragging == NO &amp;&amp; self.tableView.decelerating == NO)</span><br><span class="line">            &#123;</span><br><span class="line">               //开始异步加载图片</span><br><span class="line">                &lt;code&gt;</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
+<p>如果tableview 停止滑动的时候开始异步加载图片</p>
+<p>最后也别忘记在内存紧张的情况下释放调所有的异步线程，以保证的你的app不会被系统强制关闭</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (void)didReceiveMemoryWarning&#123;</span><br><span class="line">//  释放调异步加载图片的线程以及所有图片资源对象</span><br><span class="line">&lt;code&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还有千万别忘记销毁的时候手动把所有的使用到的代理设置nil<br>至此性能优化结束，来源于官方文案</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/04/02/2014-10-9-UITableview的优化/" data-id="cioe23g24000jnk2cehavkbgx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/05/19/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/03/26/2015-03-21UISearchbar/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">UISearchBar的代理方法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub-pages-Jekyll-markdown-layouts/">GitHub, pages, Jekyll, markdown, layouts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jekyll/">Jekyll</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/GitHub-pages-Jekyll-markdown-layouts/" style="font-size: 10px;">GitHub, pages, Jekyll, markdown, layouts</a> <a href="/tags/Jekyll/" style="font-size: 10px;">Jekyll</a> <a href="/tags/test/" style="font-size: 10px;">test</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">September 2011</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/05/19/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/02/2014-10-9-UITableview的优化/">UITableView的优化</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/26/2015-03-21UISearchbar/">UISearchBar的代理方法</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/20/2014-3-21-runtime/">Object-C运行时</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/10/谓词/">谓词</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

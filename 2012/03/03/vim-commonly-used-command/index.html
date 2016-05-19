@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Vim 常用命令总结 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="使用 Vim 作为主要的编辑器，使我的工作效率提高了不少。这篇文章对 Vim 的一些常用命令做了简单总结。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vim 常用命令总结">
+<meta property="og:url" content="http://yoursite.com/2012/03/03/vim-commonly-used-command/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="使用 Vim 作为主要的编辑器，使我的工作效率提高了不少。这篇文章对 Vim 的一些常用命令做了简单总结。">
+<meta property="og:updated_time" content="2016-04-02T13:31:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vim 常用命令总结">
+<meta name="twitter:description" content="使用 Vim 作为主要的编辑器，使我的工作效率提高了不少。这篇文章对 Vim 的一些常用命令做了简单总结。">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-vim-commonly-used-command" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/03/03/vim-commonly-used-command/" class="article-date">
+  <time datetime="2012-03-02T16:00:00.000Z" itemprop="datePublished">2012-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Vim 常用命令总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>使用 <strong>Vim</strong> 的时间不长 <strong>Vim</strong> 编辑模式了。 <strong>Vim</strong> 的学习曲线是非常陡的，一开始学习的时候，面对很多的操作命令要去记住，常常望而却步。</p>
+<p>其实，只要记住一些常用的命令，加之在工作中坚持使用 <strong>Vim</strong> 进行编辑，很快就能得心应手了。</p>
+<p>###光标移动(Cursor Movement)</p>
+<table width="100%"><br>    <tbody><br>        <tr><br>            <th width="20%">命令</th><br>            <th width="80%">作用（解释）</th><br>        </tr><br>        <tr><br>            <td><code class="v-code">h,j,k,l</code></td><br>            <td><code class="v-code">h</code>表示往左，<code class="v-code">j</code>表示往下，<code class="v-code">k</code>表示往右，<code class="v-code">l</code>表示往上</td><br>        </tr><br>        <tr><br>            <td><code class="v-code">Ctrl</code>+<code class="v-code">f</code></td><br>            <td>上一页</td><br>        </tr><br>        <tr><br>            <td><code class="v-code">Ctrl</code>+<code class="v-code">b</code></td><br>            <td>下一页</td><br>        </tr><br>        <tr><br>            <td><code class="v-code">w</code>, <code class="v-code">e</code>, <code class="v-code">W</code>, <code class="v-code">E</code></td><br>            <td>跳到单词的后面，小写包括标点</td><br>        </tr><br>        <tr><br>            <td><code class="v-code">b</code>, <code class="v-code">B</code></td><br>            <td>以单词为单位往前跳动光标，小写包含标点</td><br>        </tr><br>        <tr><br>            <td><code class="v-code">O</code></td><br>            <td>开启新的一行</td><br>        </tr><br>        <tr><br>            <td><code class="v-code">^</code></td><br>            <td>一行的开始</td><br>        </tr><br>        <tr><br>            <td><code class="v-code">$</code></td><br>            <td>一行的结尾</td><br>        </tr><br>        <tr><br>            <td><code class="v-code">gg</code></td><br>            <td>文档的第一行</td><br>        </tr><br>        <tr><br>            <td><code class="v-code">[N]G</code></td><br>            <td>文档的第N行或者最后一行</td><br>        </tr><br>    </tbody><br></table>
+
+<p>###插入模式(Insert Mode)</p>
+<table width="100%"><br>    <tbody><br>        <tr><br>            <th width="20%">命令</th><br>            <th width="80%">作用（解释)</th><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">i</code><br>            </td><br>            <td>插入到光标前面</td><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">I</code><br>            </td><br>            <td>插入到行的开始位置</td><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">a</code><br>            </td><br>            <td>插入到光标的后面</td><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">A</code><br>            </td><br>            <td>插入到行的最后位置</td><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">o</code>, <code class="v-code">O</code><br>            </td><br>            <td>新开一行</td><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">Esc</code><br>            </td><br>            <td>关闭插入模式</td><br>        </tr><br>    </tbody><br></table>
+
+<p>###编辑(Editing)</p>
+<table width="100%"><br>    <tbody><br>        <tr><br>            <th width="20%">命令</th><br>            <th width="80%">作用（解释）</th><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">r</code><br>            </td><br>            <td>在插入模式替换光标所在的一个字符</td><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">J</code><br>            </td><br>            <td>合并下一行到上一行</td><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">s</code><br>            </td><br>            <td>删除光标所在的一个字符, 光标还在当行</td><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">S</code><br>            </td><br>            <td>删除光标所在的一行，光标还在当行，不同于<code class="v-code">dd</code></td><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">u</code><br>            </td><br>            <td>撤销上一步操作</td><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">ctrl</code>+<code class="v-code">r</code><br>            </td><br>            <td>恢复上一步操作</td><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">.</code><br>            </td><br>            <td>重复最后一个命令</td><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">~</code><br>            </td><br>            <td>变换为大写</td><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">[N]&gt;&gt;</code><br>            </td><br>            <td>一行或N行往右移动一个tab</td><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">[N]&lt;&lt;</code><br>            </td><br>            <td>一行或N行往左移动一个tab</td><br>        </tr><br>    </tbody><br></table>
+
+<p>###关闭(Exiting)</p>
+<table width="100%"><br>    <tbody><br>        <tr><br>            <th width="20%">命令</th><br>            <th width="80%">作用（解释)</th><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">:w</code><br>            </td><br>            <td>保存</td><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">:wq</code>,<br>                <code class="v-code">:x</code><br>            </td><br>            <td>保存并关闭</td><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">:q</code><br>            </td><br>            <td>关闭（已保存）</td><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">:q!</code><br>            </td><br>            <td>强制关闭</td><br>        </tr><br>    </tbody><br></table>
+
+<p>###搜索(Search)</p>
+<table width="100%"><br>    <tbody><br>        <tr><br>            <th width="20%">命令</th><br>            <th width="80%">作用（解释)</th><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">/pattern</code><br>            </td><br>            <td>搜索（非插入模式)</td><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">?pattern</code><br>            </td><br>            <td>往后搜索</td><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">n</code><br>            </td><br>            <td>光标到达搜索结果的前一个目标</td><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">N</code><br>            </td><br>            <td>光标到达搜索结果的后一个目标</td><br>        </tr><br>    </tbody><br></table>
+
+<p>###视觉模式(Visual Mode)</p>
+<table width="100%"><br>    <tbody><br>        <tr><br>            <th width="20%">命令</th><br>            <th width="80%">作用（解释)</th><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">v</code><br>            </td><br>            <td>选中一个或多个字符</td><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">V</code><br>            </td><br>            <td>选中一行</td><br>        </tr><br>    </tbody><br></table>
+
+<p>###剪切和复制(Cut and Paste)</p>
+<table width="100%"><br>    <tbody><br>        <tr><br>            <th width="20%">命令</th><br>            <th width="80%">作用（解释)</th><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">dd</code><br>            </td><br>            <td>删除一行</td><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">dw</code><br>            </td><br>            <td>删除一个单词</td><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">x</code><br>            </td><br>            <td>删除后一个字符</td><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">X</code><br>            </td><br>            <td>删除前一个字符</td><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">D</code><br>            </td><br>            <td>删除一行最后一个字符</td><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">[N]yy</code><br>            </td><br>            <td>复制一行或者N行</td><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">yw</code><br>            </td><br>            <td>复制一个单词</td><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">p</code><br>            </td><br>            <td>粘贴</td><br>        </tr><br>    </tbody><br></table>
+
+<p>###窗口操作</p>
+<table width="100%"><br>    <tbody><br>        <tr><br>            <th width="20%">命令</th><br>            <th width="80%">作用（解释)</th><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">:split</code><br>            </td><br>            <td>水平方向分割出一个窗口</td><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">:vsplit</code><br>            </td><br>            <td>垂直方向分割出一个窗口</td><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">:close</code><br>            </td><br>            <td>关闭窗口</td><br>        </tr><br>        <tr><br>            <td><br>                <code class="v-code">Ctrl</code>+<code class="v-code">W</code><br>            </td><br>            <td>切换窗口, <code class="v-code">h</code>到左边窗口，<code class="v-code">j</code>到下方窗口，<code class="v-code">k</code>到上方窗口，<code class="v-code">l</code>到右边窗口</td><br>        </tr><br>    </tbody><br></table>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2012/03/03/vim-commonly-used-command/" data-id="cioe23g1t000cnk2cveqgtldl" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2012/03/04/static-search-article-on-jekyll/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          为 Jekyll 博客添加静态搜索
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2012/02/23/use-category-plugin-for-jekyll-blog/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">为 Jekyll 博客添加 category 分类</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub-pages-Jekyll-markdown-layouts/">GitHub, pages, Jekyll, markdown, layouts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jekyll/">Jekyll</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/GitHub-pages-Jekyll-markdown-layouts/" style="font-size: 10px;">GitHub, pages, Jekyll, markdown, layouts</a> <a href="/tags/Jekyll/" style="font-size: 10px;">Jekyll</a> <a href="/tags/test/" style="font-size: 10px;">test</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">September 2011</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/05/19/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/02/2014-10-9-UITableview的优化/">UITableView的优化</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/26/2015-03-21UISearchbar/">UISearchBar的代理方法</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/20/2014-3-21-runtime/">Object-C运行时</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/10/谓词/">谓词</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

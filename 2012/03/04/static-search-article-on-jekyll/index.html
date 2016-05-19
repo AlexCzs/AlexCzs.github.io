@@ -3,21 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hello World | Hexo</title>
+  <title>为 Jekyll 博客添加静态搜索 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+  <meta name="description" content="使用 Javascript 通过关键词来搜索博客中的相关文章，实现在 Jekyll 中的静态搜索。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2016/05/19/hello-world/index.html">
+<meta property="og:title" content="为 Jekyll 博客添加静态搜索">
+<meta property="og:url" content="http://yoursite.com/2012/03/04/static-search-article-on-jekyll/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2016-05-19T08:38:41.000Z">
+<meta property="og:description" content="使用 Javascript 通过关键词来搜索博客中的相关文章，实现在 Jekyll 中的静态搜索。">
+<meta property="og:updated_time" content="2016-02-28T18:45:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="为 Jekyll 博客添加静态搜索">
+<meta name="twitter:description" content="使用 Javascript 通过关键词来搜索博客中的相关文章，实现在 Jekyll 中的静态搜索。">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -66,10 +63,10 @@ Quick">
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-static-search-article-on-jekyll" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/05/19/hello-world/" class="article-date">
-  <time datetime="2016-05-19T08:38:41.000Z" itemprop="datePublished">2016-05-19</time>
+    <a href="/2012/03/04/static-search-article-on-jekyll/" class="article-date">
+  <time datetime="2012-03-03T16:00:00.000Z" itemprop="datePublished">2012-03-04</time>
 </a>
     
   </div>
@@ -80,7 +77,7 @@ Quick">
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      为 Jekyll 博客添加静态搜索
     </h1>
   
 
@@ -88,20 +85,86 @@ Quick">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <p>今晚吃完饭后，为博客做了简单的搜索功能，因为做的大多是前台方面的工作，所以我个人<br>将其称之为静态搜索。简单介绍下。</p>
+<p>###一、生成 search.xml</p>
+<p>遍历 <strong>Jekyll</strong> 博客中的所有文章，获取其标题、日期和文章链接，整合<br>到一个 <strong>xml</strong> 文件中。这个 <strong>xml</strong> 文件我们可将其命名为<code class="v-code">search.xml</code>，以便我们后续的工作。</p>
+<p>具体的写法如下：</p>
+<pre class="html" name="colorcode">
+//jekyll 语法前反斜杆是为了转义输出，请去掉
+&lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+&lt;articles&gt;
+{\% for post in site.posts %\}
+&lt;article&gt;
+    &lt;title&gt;{\{ post.title }\}&lt;/title&gt;
+    &lt;url&gt;{\{ site.url }\}{\{ post.url }\}&lt;/url&gt;
+    &lt;date&gt;{\{ post.date | date_to_utc | date: '%Y-%m-%d'}\}&lt;/date&gt;
+&lt;/article&gt;
+{\% endfor %\}
+&lt;/articles&gt;
+</pre>
+
+<p>###二、添加 DOM 结构</p>
+<p>DOM 结构就是 HTML 代码啦。你可以添加到你希望的地方，但要注意一点，就是你添加 DOM结构的地方要有相应的 CSS 链接和 JS 链接。我把这个简单的搜索功能放在 Archive.html里面，不清楚的同学可以去看源代码哈。</p>
+<p>添加 <strong>Jquery UI</strong> 样式和 <strong>JS</strong> 链接。我在这里采用的是 jquery-ui-1.8.18.custom 版本。DOM 结构保存在同一个页面。</p>
+<pre class="html" name="colorcode">
+//样式表
+&lt;link rel="stylesheet" href="/css/jquery-ui-1.8.18.custom.css" type="text/css"
+/&gt;
+
+//js
+&lt;script src="/js/jquery-ui-1.8.18.custom.js"&gt;&lt;/script&gt;
+
+//添加 DOM
+&lt;input id="J_search" placeholder="Simple Search"/&gt;
+</pre>
+
+<p>###三、设置全局地址</p>
+<p>在 <strong>Jekyll</strong> 博客的根目录下的 <code class="v-code">config.yml</code> 添加你的博客的全局基本地址。就一句话就 Ok 哈！</p>
+<pre class="html" name="colorcode">
+url: http://www.pizn.me
+</pre>
+
+
+<p>###四、通过 Javascript 实现搜索功能</p>
+<p>简单说明下原理：通过在输入框输入关键词，<strong>Ajax</strong> 匹配 search.xml 中的文章标题里面的词语，<br>若是，在输入框下方显示出标题。通过选择标题，跳转到搜索到的文章页面。</p>
+<p>我的实现方式是这样的，你也可以通过修改 <code class="v-code">autocomplete</code><br>的实例来实现不同的展现效果。</p>
+<pre class="js" name="colorcode">
+$(function() {
+        $.ajax({
+            url: "search.xml",
+            dataType: "xml",
+            success: function( xmlResponse ) {
+                var data = $( "article", xmlResponse ).map(function() {
+                    return {
+                        value: $( "title", this ).text() + ", " +
+                            ( $.trim( $( "date", this ).text() ) ),
+                        desc: $("description", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+
+                $( "#J_search" ).autocomplete({
+                    source: data,
+                    minLength: 0,
+                    select: function( event, ui ) {
+                        window.location.href = ui.item.url;
+                    }
+                });
+            }
+        });
+    });
+</pre>
+
+<p>###五、测试</p>
+<p>在输入框中输入你所知道的一些关键词，如果输入框下拉菜单有内容，选中它，成功跳转到对应的文章页面。那么，你成功了。</p>
+<p>###六、总结</p>
+<p>这是一个很简单的实现方法，因为就今晚几个小时做出来的，所以可能还有很多不适用性。兼容性方面还没做好测试，只兼容 Firefox 和 Chrome ，还没完善的一个方面是出错处理，有空再补上。</p>
+<p>遗憾的是暂时只支持英文关键词搜索，后续，恩，中英文。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/19/hello-world/" data-id="cioe23g2c000nnk2cqy1a3o8e" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2012/03/04/static-search-article-on-jekyll/" data-id="cioe23g1v000dnk2ck90g3n3y" class="article-share-link">Share</a>
       
       
     </footer>
@@ -110,10 +173,19 @@ Quick">
     
 <nav id="article-nav">
   
+    <a href="/2012/04/23/quickly-create-beautiful-github-pages/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          快速创建漂亮的项目页面
+        
+      </div>
+    </a>
   
-    <a href="/2016/04/02/2014-10-9-UITableview的优化/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2012/03/03/vim-commonly-used-command/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">UITableView的优化</div>
+      <div class="article-nav-title">Vim 常用命令总结</div>
     </a>
   
 </nav>

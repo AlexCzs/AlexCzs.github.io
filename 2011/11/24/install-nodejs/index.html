@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2016 | Hexo</title>
+  <title>安装 node.js | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2016/index.html">
+  <meta name="description" content="安装 Node.js 的步骤。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安装 node.js">
+<meta property="og:url" content="http://yoursite.com/2011/11/24/install-nodejs/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description">
+<meta property="og:description" content="安装 Node.js 的步骤。">
+<meta property="og:updated_time" content="2016-02-28T18:45:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-<meta name="twitter:description">
+<meta name="twitter:title" content="安装 node.js">
+<meta name="twitter:description" content="安装 Node.js 的步骤。">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -62,96 +63,116 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/05/19/hello-world/" class="archive-article-date">
-  <time datetime="2016-05-19T08:38:41.000Z" itemprop="datePublished">May 19</time>
+        <section id="main"><article id="post-install-nodejs" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/11/24/install-nodejs/" class="article-date">
+  <time datetime="2011-11-23T16:00:00.000Z" itemprop="datePublished">2011-11-24</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/19/hello-world/">Hello World</a>
+    <h1 class="article-title" itemprop="name">
+      安装 node.js
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/04/02/2014-10-9-UITableview的优化/" class="archive-article-date">
-  <time datetime="2016-04-02T14:23:51.000Z" itemprop="datePublished">Apr 2</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/02/2014-10-9-UITableview的优化/">UITableView的优化</a>
-    </h1>
-  
+        <p>今天开始折腾 Node.js. 第一步，如何安装。</p>
+<p>###Mac 上的安装方法</p>
+<p>如果你已经安装好了 homebrew ，直接在终端输入这样一个命令: brew install node</p>
+<p>如果没有，可以采用下面的方法：</p>
+<ol>
+<li>安装 Xcode (开发者工具，里面有很多需要的软件包，最基础的一些环境等)</li>
+<li>安装 git2. 安装 git (之前已经有文章介绍过)</li>
+<li>在终端输入下面命令：</li>
+</ol>
+<pre name="colorcode" class="js">
+git clone git://github.com/ry/node.git
+cd node
+./configure
+make
+sudo make install
+</pre>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/03/26/2015-03-21UISearchbar/" class="archive-article-date">
-  <time datetime="2016-03-26T12:12:09.000Z" itemprop="datePublished">Mar 26</time>
-</a>
+<p>接着就可以通过后面的一个 Hello world 的例子来测试是否运行了。</p>
+<p>###Ubuntu 上面的安装方法</p>
+<ol>
+<li><p>安装一些依赖包</p>
+<pre name="colorcode" class="js">
+sudo apt-get install g++ curl libssl-dev apache2-utils
+sudo apt-git install git-core
+</pre>
+</li>
+<li><p>在终端下运行下面命令：</p>
+<pre name="colorcode" class="js">
+git clone git://github.com/ry/node.git
+cd node
+./configure
+make
+sudo make install
+</pre>
+
+</li>
+</ol>
+<p>接着就可以通过后面的一个 Hello world 的例子来测试是否运行了。</p>
+<p>###Windows 上面的安装方法</p>
+<p>在 Windows 上，你得使用 cygwin 来安装 node，具体的安装方法如下：</p>
+<ol>
+<li>安装 cygwin</li>
+<li><p>点击 cygwin 里面的 setup.exe 来安装如下的包：</p>
+<ul>
+<li>devel -&gt; openssl</li>
+<li>devel -&gt; g++-gcc</li>
+<li>devel -&gt; make</li>
+<li>python -&gt; python</li>
+<li>devel -&gt; git</li>
+</ul>
+</li>
+<li><p>依照 start -&gt; cygwin -&gt; cygwin bash shell 打开终端</p>
+</li>
+<li>输入下面命令：<br><pre name="colorcode" class="js"><br>git clone git://github.com/ry/node.git<br>cd node<br>./configure<br>make<br>sudo make install<br></pre><br>接着就可以通过后面的一个 Hello world 的例子来测试是否运行了。</li>
+</ol>
+<p>PS: 其实在 windows 下，还有其他的安装方法。具体百度一下就有。</p>
+
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/03/26/2015-03-21UISearchbar/">UISearchBar的代理方法</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/03/20/2014-3-21-runtime/" class="archive-article-date">
-  <time datetime="2016-03-20T13:24:06.000Z" itemprop="datePublished">Mar 20</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2011/11/24/install-nodejs/" data-id="cioe23g1g0008nk2cl32s2n13" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/03/20/2014-3-21-runtime/">Object-C运行时</a>
-    </h1>
-  
-
-    </header>
+      
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2011/11/30/install-jekyll/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          mac 本地按安装 jekyll
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2011/11/24/hello-node/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello Node.js</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 </section>
         

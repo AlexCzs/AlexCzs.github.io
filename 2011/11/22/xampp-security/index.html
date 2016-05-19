@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2016 | Hexo</title>
+  <title>mac 下 xampp 的安全设置 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2016/index.html">
+  <meta name="description" content="xampp 在 mac 上的安全设置是需要手动设置的，这里为你介绍如何设置。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mac 下 xampp 的安全设置">
+<meta property="og:url" content="http://yoursite.com/2011/11/22/xampp-security/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description">
+<meta property="og:description" content="xampp 在 mac 上的安全设置是需要手动设置的，这里为你介绍如何设置。">
+<meta property="og:updated_time" content="2016-02-28T18:45:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-<meta name="twitter:description">
+<meta name="twitter:title" content="mac 下 xampp 的安全设置">
+<meta name="twitter:description" content="xampp 在 mac 上的安全设置是需要手动设置的，这里为你介绍如何设置。">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -62,96 +63,67 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/05/19/hello-world/" class="archive-article-date">
-  <time datetime="2016-05-19T08:38:41.000Z" itemprop="datePublished">May 19</time>
+        <section id="main"><article id="post-xampp-security" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/11/22/xampp-security/" class="article-date">
+  <time datetime="2011-11-21T16:00:00.000Z" itemprop="datePublished">2011-11-22</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/19/hello-world/">Hello World</a>
+    <h1 class="article-title" itemprop="name">
+      mac 下 xampp 的安全设置
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/04/02/2014-10-9-UITableview的优化/" class="archive-article-date">
-  <time datetime="2016-04-02T14:23:51.000Z" itemprop="datePublished">Apr 2</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/02/2014-10-9-UITableview的优化/">UITableView的优化</a>
-    </h1>
-  
+        <p>很早之前使用 xampp 是在 win 下面的，很多功能基本都是默认设置好的。今儿在 Mac 下<br>安装个 xampp ，随后遇到这样一个问题：</p>
+<p><pre class="js" name="colorcode"><br>The MySQL administrator has no password.<br>The MySQL daemon is accessible via network.<br></pre><br>默认的 MySQL 是没有设置密码的。恩，这点对于安全性来说很不好。</p>
+<p>于是寻找解决的方法：</p>
+<p>在终端下面执行这样的一句话：</p>
+<p><pre class="js" name="colorcode"><br>sudo /Applications/XAMPP/xamppfiles/xampp security<br></pre><br>接着会提示着询问你是否输入密码，进而设置好你的 MySQL 安全性，还有 apache 密码，<br>ftp 密码等。</p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/03/26/2015-03-21UISearchbar/" class="archive-article-date">
-  <time datetime="2016-03-26T12:12:09.000Z" itemprop="datePublished">Mar 26</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/03/26/2015-03-21UISearchbar/">UISearchBar的代理方法</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/03/20/2014-3-21-runtime/" class="archive-article-date">
-  <time datetime="2016-03-20T13:24:06.000Z" itemprop="datePublished">Mar 20</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2011/11/22/xampp-security/" data-id="cioe23g1b0004nk2cp3wh01h9" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/03/20/2014-3-21-runtime/">Object-C运行时</a>
-    </h1>
-  
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/test/">test</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2011/11/24/hello-node/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hello Node.js
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2011/11/22/mac-wget/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">mac 上安装 wget</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 </section>
         

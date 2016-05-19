@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Object-C运行时 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="runtime运行时12345678910111.什么是运行时1&amp;gt; 运行时是一套存C语言的API(存C语言库)2&amp;gt; 利用运行时,可以做很多底层的操作,比如* clang -rewrite-objc xxx.m3&amp;gt; 编译器最终都会讲OC代码 转化 为运行时代码* 动态添加对象的成员变量和成员方法* 动态交换两个方法的实现(特别是交换系统自带的方法)* 获得某个类的所有成员方法,所有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Object-C运行时">
+<meta property="og:url" content="http://yoursite.com/2016/03/20/2014-3-21-runtime/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="runtime运行时12345678910111.什么是运行时1&amp;gt; 运行时是一套存C语言的API(存C语言库)2&amp;gt; 利用运行时,可以做很多底层的操作,比如* clang -rewrite-objc xxx.m3&amp;gt; 编译器最终都会讲OC代码 转化 为运行时代码* 动态添加对象的成员变量和成员方法* 动态交换两个方法的实现(特别是交换系统自带的方法)* 获得某个类的所有成员方法,所有">
+<meta property="og:updated_time" content="2016-04-02T13:22:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Object-C运行时">
+<meta name="twitter:description" content="runtime运行时12345678910111.什么是运行时1&amp;gt; 运行时是一套存C语言的API(存C语言库)2&amp;gt; 利用运行时,可以做很多底层的操作,比如* clang -rewrite-objc xxx.m3&amp;gt; 编译器最终都会讲OC代码 转化 为运行时代码* 动态添加对象的成员变量和成员方法* 动态交换两个方法的实现(特别是交换系统自带的方法)* 获得某个类的所有成员方法,所有">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2014-3-21-runtime" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/20/2014-3-21-runtime/" class="article-date">
+  <time datetime="2016-03-20T13:24:06.000Z" itemprop="datePublished">2016-03-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Object-C运行时
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="runtime运行时"><a href="#runtime运行时" class="headerlink" title="runtime运行时"></a>runtime运行时</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1.什么是运行时</span><br><span class="line">1&gt; 运行时是一套存C语言的API(存C语言库)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2&gt; 利用运行时,可以做很多底层的操作,比如</span><br><span class="line">* clang -rewrite-objc xxx.m</span><br><span class="line"></span><br><span class="line">3&gt; 编译器最终都会讲OC代码 转化 为运行时代码</span><br><span class="line">* 动态添加对象的成员变量和成员方法</span><br><span class="line">* 动态交换两个方法的实现(特别是交换系统自带的方法)</span><br><span class="line">* 获得某个类的所有成员方法,所有成员变量</span><br></pre></td></tr></table></figure>
+<h3 id="2-如何应用运行时"><a href="#2-如何应用运行时" class="headerlink" title="2.如何应用运行时"></a>2.如何应用运行时</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1&gt; 将某些OC代码转为运行时代码:探究底层,比如block的实现原理</span><br><span class="line">2&gt; 拦截系统自带的方法调用,比如拦截imageName:,viewDidLoad,alloc(什么是iOS的SWizzle,黑魔法,巫术)</span><br><span class="line">3&gt; 实现字典和模型的自动转换</span><br><span class="line">4&gt; 实现分类增加属性(每个对象的属性互补干扰)</span><br><span class="line">5&gt; 实现NSCoding属性的自动归档和自动解档</span><br></pre></td></tr></table></figure>
+<h3 id="3-运行时常用的函数"><a href="#3-运行时常用的函数" class="headerlink" title="3.运行时常用的函数"></a>3.运行时常用的函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">1&gt; &lt;objc/runtime.h&gt;</span><br><span class="line">* Method class_getClassMethod(Class cls,SEL name)</span><br><span class="line">获得某个类的类方法</span><br><span class="line"></span><br><span class="line">* Method class_getInstanceMethod(Class cls,SEL name)</span><br><span class="line">获得某个类的对象方法</span><br><span class="line"></span><br><span class="line">* void method_exchangeImplementations(Method m1, Method m2) </span><br><span class="line">交换2个方法的实现(重点,iOS 中的黑魔法Swizzle)</span><br><span class="line"></span><br><span class="line">* void objc_setAssociatedObject(id object, const void *key, id value, objc_AssociationPolicy policy)</span><br><span class="line">将值value根对象object关联起来(将值value存贮到对象object中)</span><br><span class="line">参数key: 将来可以通过key去除这个存储的值</span><br><span class="line">参数policy: 存贮策略(assign,copy,retain)</span><br><span class="line"></span><br><span class="line">* id objc_getAssociatedObject(id object,sonst void *key)</span><br><span class="line">利用参数key将对象object中存储的对应值取出来</span><br><span class="line"></span><br><span class="line">* Ivar *class_copyIvarList(Class cls, unsigned int *outCount) </span><br><span class="line">获得某各类的所有成员变量(outCount会返回所有成员变量的总数)</span><br><span class="line"></span><br><span class="line">* const char *ivar_getName(Ivar v) </span><br><span class="line">获得成员变量的名字</span><br><span class="line"></span><br><span class="line">* const char *ivar_getTypeEncoding(Ivar v) </span><br><span class="line">获得成员变量的类型</span><br><span class="line"></span><br><span class="line">* void	 free(void *);</span><br><span class="line">释放内存</span><br><span class="line">(当C语言函数名中包含了copy,create,retai,new等词语,都需要在最后释放资源)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2&gt; &lt;objc/message.h&gt;</span><br><span class="line">* void objc_msgSend(void)</span><br><span class="line">给某个对象发送某个消息</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><h5 id="动态交换两个方法的实现-特别是交换系统自带的方法"><a href="#动态交换两个方法的实现-特别是交换系统自带的方法" class="headerlink" title="动态交换两个方法的实现(特别是交换系统自带的方法)"></a>动态交换两个方法的实现(特别是交换系统自带的方法)</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//交换方法实现</span><br><span class="line">    Method m1 = class_getClassMethod([Person class], @selector(run));</span><br><span class="line">    Method m2 = class_getClassMethod([Person class], @selector(study));</span><br><span class="line">    method_exchangeImplementations(m1, m2);</span><br></pre></td></tr></table></figure>
+<h5 id="交换方法实现-兼容版本具体应用"><a href="#交换方法实现-兼容版本具体应用" class="headerlink" title="交换方法实现,兼容版本具体应用"></a>交换方法实现,兼容版本具体应用</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;UIImage+Extension.h&quot;</span><br><span class="line">#import &lt;objc/runtime.h&gt;</span><br><span class="line"></span><br><span class="line">@implementation UIImage (Extension)</span><br><span class="line">//交换方法</span><br><span class="line">+(void)load&#123;</span><br><span class="line">    Method m1 = class_getClassMethod([UIImage class], @selector(imageNamed:));</span><br><span class="line">    Method m2 = class_getClassMethod([UIImage class], @selector(ac_imageNamed:));</span><br><span class="line">    method_exchangeImplementations(m1, m2);</span><br><span class="line">&#125;</span><br><span class="line">+(UIImage *)ac_imageNamed:(NSString *)name&#123;</span><br><span class="line">    double version = [[[UIDevice currentDevice] systemVersion]doubleValue];</span><br><span class="line">    if (version &gt;= 7.0) &#123;</span><br><span class="line">        name = [NSString stringWithFormat:@&quot;%@_iOS7&quot;,name];</span><br><span class="line">    &#125;</span><br><span class="line">    return [UIImage ac_imageNamed:name];</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<h5 id="给分类增加属性"><a href="#给分类增加属性" class="headerlink" title="给分类增加属性"></a>给分类增加属性</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;Foundation/Foundation.h&gt;</span><br><span class="line"></span><br><span class="line">@interface NSObject (Extension)</span><br><span class="line">@property(nonatomic,copy)NSString *name;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#import &quot;NSObject+Extension.h&quot;</span><br><span class="line">#import &lt;objc/runtime.h&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@implementation NSObject (Extension)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">char NameKey;</span><br><span class="line">-(void)setName:(NSString *)name&#123;</span><br><span class="line">    </span><br><span class="line">    objc_setAssociatedObject(self, &amp;NameKey, name, OBJC_ASSOCIATION_COPY_NONATOMIC);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(NSString *)name&#123;</span><br><span class="line">    return  objc_getAssociatedObject(self, &amp;NameKey);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<h5 id="获取类的所有成员变量"><a href="#获取类的所有成员变量" class="headerlink" title="获取类的所有成员变量"></a>获取类的所有成员变量</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">unsigned int outCount = 0;</span><br><span class="line">    //获得Dog类的所有成员变量</span><br><span class="line">    Ivar *ivars = class_copyIvarList([Dog class], &amp;outCount);</span><br><span class="line">    // 遍历所有的成员变量</span><br><span class="line">    for (int i = 0; i &lt; outCount; i++) &#123;</span><br><span class="line">        Ivar ivar = ivars[i];</span><br><span class="line">        const char *name =  ivar_getName(ivar);</span><br><span class="line">        const char *type = ivar_getTypeEncoding(ivar);</span><br><span class="line">        NSLog(@&quot;%s %s&quot;,name,type);</span><br><span class="line">    &#125;</span><br><span class="line">    //释放内存</span><br><span class="line">    free(ivars);</span><br><span class="line">    </span><br><span class="line">    NSLog(@&quot;%zd&quot;,outCount);</span><br></pre></td></tr></table></figure>
+<h5 id="运行KVC时归档解档"><a href="#运行KVC时归档解档" class="headerlink" title="运行KVC时归档解档"></a>运行KVC时归档解档</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;Dog.h&quot;</span><br><span class="line">#import &lt;objc/runtime.h&gt;</span><br><span class="line">@interface Dog : NSObject&lt;NSCoding&gt;</span><br><span class="line">@property (nonatomic, copy) NSString *name;</span><br><span class="line">@property (nonatomic, assign) int age;</span><br><span class="line">@property (nonatomic, assign) double height;</span><br><span class="line">@property (nonatomic, assign) double weight;</span><br><span class="line">@property (nonatomic, assign) double aaa;</span><br><span class="line">@property (nonatomic, assign) double bbb;</span><br><span class="line">@property (nonatomic, assign) double ccc;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">#import &quot;Dog.h&quot;</span><br><span class="line">#import &lt;objc/runtime.h&gt;</span><br><span class="line">@implementation Dog</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line"> 这个数据的成员变量,不会被归档和解档</span><br><span class="line"> */</span><br><span class="line">-(NSArray *)ignoredNames&#123;</span><br><span class="line">    return @[@&quot;_aaa&quot;,@&quot;_bbb&quot;,@&quot;_ccc&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/// 从文件中读取对象时会调用这个方法(说明需要读取的属性)</span><br><span class="line">-(instancetype)initWithCoder:(NSCoder *)aDecoder&#123;</span><br><span class="line">    </span><br><span class="line">    if (self = [super init]) &#123;</span><br><span class="line">        </span><br><span class="line">        //用来存储成员变量的数量</span><br><span class="line">        unsigned int outCount = 0;</span><br><span class="line">        </span><br><span class="line">        //获得Dog类的所有成员变量</span><br><span class="line">        Ivar *ivars = class_copyIvarList([self class], &amp;outCount);</span><br><span class="line">        </span><br><span class="line">        // 遍历所有的成员变量</span><br><span class="line">        for (int i = 0; i &lt; outCount; i++) &#123;</span><br><span class="line">            // 取出i位置对应的成员变量</span><br><span class="line">            Ivar ivar = ivars[i];</span><br><span class="line">            </span><br><span class="line">            NSString *key =  [NSString stringWithUTF8String:ivar_getName(ivar)];</span><br><span class="line">            //忽略解档对象</span><br><span class="line">            if ([[self ignoredNames] containsObject:key])</span><br><span class="line">                continue;</span><br><span class="line">            //获得key对应的值</span><br><span class="line">            id value = [aDecoder decodeObjectForKey:key];</span><br><span class="line">            </span><br><span class="line">            //设置到成员变量上</span><br><span class="line">            [self setValue:value forKeyPath:key];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        //释放内存</span><br><span class="line">        free(ivars);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    return self;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/// 将对象写入文件时会调用这个方法(说明哪个属性需要存储)</span><br><span class="line">-(void)encodeWithCoder:(NSCoder *)aCoder&#123;</span><br><span class="line">    </span><br><span class="line">    //用来存储成员变量的数量</span><br><span class="line">    unsigned int outCount = 0;</span><br><span class="line">    //获得Dog类的所有成员变量</span><br><span class="line">    Ivar *ivars = class_copyIvarList([self class], &amp;outCount);</span><br><span class="line">    // 遍历所有的成员变量</span><br><span class="line">    for (int i = 0; i &lt; outCount; i++) &#123;</span><br><span class="line">        Ivar ivar = ivars[i];</span><br><span class="line">        NSString *key =  [NSString stringWithUTF8String:ivar_getName(ivar)];</span><br><span class="line">        //忽略归档对象</span><br><span class="line">        if ([[self ignoredNames] containsObject:key])</span><br><span class="line">            continue;</span><br><span class="line">        id value = [self valueForKeyPath:key];</span><br><span class="line">        </span><br><span class="line">        [aCoder encodeObject:value forKey:key];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //释放内存</span><br><span class="line">    free(ivars);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//viewController点击方法</span><br><span class="line">-(void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event&#123;</span><br><span class="line">    </span><br><span class="line">    Dog *dog1 = [[Dog alloc]init];</span><br><span class="line">    dog1.age = 20;</span><br><span class="line">    dog1.height = 1.55;</span><br><span class="line">    dog1.name = @&quot;wangcai&quot;;</span><br><span class="line">    dog1.weight = 50;</span><br><span class="line">    //将dog归档到桌面</span><br><span class="line">    [NSKeyedArchiver archiveRootObject:dog1 toFile:@&quot;/Users/Chenzhaoshen/Desktop/dog.hm&quot;];</span><br><span class="line">    </span><br><span class="line">    //解档</span><br><span class="line">    Dog *dog = [NSKeyedUnarchiver unarchiveObjectWithFile:@&quot;/Users/Chenzhaoshen/Desktop/dog.hm&quot;];</span><br><span class="line">    NSLog(@&quot;%@,%d,%f,%f&quot;,dog.name,dog.age,dog.height,dog.weight);</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="懒加载"><a href="#懒加载" class="headerlink" title="懒加载"></a>懒加载</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">* 当某个类或者分类加载进内存时,会调用1次</span><br><span class="line">+(void)load方法</span><br><span class="line">* 当某个类或者分类初始化时,会调用1次</span><br><span class="line">+(void)initialize方法</span><br></pre></td></tr></table></figure>
+<h3 id="解决项目配置的大部分报错问题"><a href="#解决项目配置的大部分报错问题" class="headerlink" title="解决项目配置的大部分报错问题"></a>解决项目配置的大部分报错问题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">1.先尝试删除Xcode编译后的缓存</span><br><span class="line">Xcode -&gt; Preferences -&gt; Locations -&gt; Derived Data</span><br><span class="line"></span><br><span class="line">2.清除Xcod的用户操作数据</span><br><span class="line">项目名.xcoderproj --&gt; 点击 --&gt; 显示包内容 --&gt; xcuserdata文件夹 --&gt; 删除</span><br><span class="line"></span><br><span class="line">3.打开project.pbxproj文件,查看是否有冗余内容,替换为新内容</span><br><span class="line"></span><br><span class="line">4.打开project.xcworkspace文件,查看是否有冗余内容,替换为新内容</span><br><span class="line"></span><br><span class="line">5.stackoverflow.com - IT问答网站(全英文)</span><br><span class="line">* 搜索内容:报错信息(不能太长,不能包含项目特用的东西,比如项目名称)</span><br><span class="line">* Xcode File not found: DerivedData</span><br><span class="line">* iOS File not found:DerivedData</span><br><span class="line">* Objective-C xxx</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/03/20/2014-3-21-runtime/" data-id="cioe23g26000knk2c3lndtcym" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/03/26/2015-03-21UISearchbar/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          UISearchBar的代理方法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/11/10/谓词/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">谓词</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub-pages-Jekyll-markdown-layouts/">GitHub, pages, Jekyll, markdown, layouts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jekyll/">Jekyll</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/GitHub-pages-Jekyll-markdown-layouts/" style="font-size: 10px;">GitHub, pages, Jekyll, markdown, layouts</a> <a href="/tags/Jekyll/" style="font-size: 10px;">Jekyll</a> <a href="/tags/test/" style="font-size: 10px;">test</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">September 2011</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/05/19/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2016/04/02/2014-10-9-UITableview的优化/">UITableView的优化</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/26/2015-03-21UISearchbar/">UISearchBar的代理方法</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/20/2014-3-21-runtime/">Object-C运行时</a>
+          </li>
+        
+          <li>
+            <a href="/2015/11/10/谓词/">谓词</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

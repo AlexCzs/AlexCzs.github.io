@@ -3,21 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hello World | Hexo</title>
+  <title>为博客添加 DisQus 评论 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+  <meta name="description" content="DisQus 是一款很好的社交评论插件，只要在你的页面加上一段 js ，在你的DisQus 账户中就可以很方便地查看别人的评论。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2016/05/19/hello-world/index.html">
+<meta property="og:title" content="为博客添加 DisQus 评论">
+<meta property="og:url" content="http://yoursite.com/2011/11/15/use-disqus-for-your-post/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2016-05-19T08:38:41.000Z">
+<meta property="og:description" content="DisQus 是一款很好的社交评论插件，只要在你的页面加上一段 js ，在你的DisQus 账户中就可以很方便地查看别人的评论。">
+<meta property="og:updated_time" content="2016-02-28T18:45:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="为博客添加 DisQus 评论">
+<meta name="twitter:description" content="DisQus 是一款很好的社交评论插件，只要在你的页面加上一段 js ，在你的DisQus 账户中就可以很方便地查看别人的评论。">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -66,10 +63,10 @@ Quick">
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-use-disqus-for-your-post" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/05/19/hello-world/" class="article-date">
-  <time datetime="2016-05-19T08:38:41.000Z" itemprop="datePublished">2016-05-19</time>
+    <a href="/2011/11/15/use-disqus-for-your-post/" class="article-date">
+  <time datetime="2011-11-14T16:00:00.000Z" itemprop="datePublished">2011-11-15</time>
 </a>
     
   </div>
@@ -80,7 +77,7 @@ Quick">
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      为博客添加 DisQus 评论
     </h1>
   
 
@@ -88,20 +85,54 @@ Quick">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <p>昨晚小试了下 DisQus ，觉得很好用。做下总结。</p>
+<p>###如何开始</p>
+<p>首先，你需要有一个 DisQus 的账号，非常简单，有个邮箱就可以了。<br>当你注册一个邮箱之后，只有3个步骤，就能完成添加评论的功能。</p>
+<p>####1，注册你的网站</p>
+<p>需要填写的地方分别是：Site URL，Site Name，Site Shortname。<br>注意：这3个都是必须要填写的，而且，短域名将会在最后的 install 中使用到。</p>
+<p>####2，一些简单的设置</p>
+<p>在这里，你需要设置的是你的评论的语言（这里在你生成的代码中，会有一条语言格式的<br>js请求）；如果你有一些社交化工具，例如twitter，也可以填上；还有一些评论重要的选<br>项，例如过滤垃圾评论，回调评论等。</p>
+<p>####3，将 DisQus 安装到你的网站。</p>
+<p>选择你需要安装的类型。假如你是 wordpress 博客，那你就可以方便地使用一个插件就行<br>了。类似的还有其他很多种博客的插件。<br>假如没有你需要的，在下面还有一步“Universal Code”来安装。现在我的 GitHub 博客，<br>就是直接安装代码来完成的。</p>
+<p>###如何安装</p>
+<p>因为我还没试过其他插件式的安装，在这里就先讲一下如何安装源代码吧。说是安装，其实<br>也就是将一段 Js 代码嵌入到你的博客源代码里面。但也有很多地方需要注意的。</p>
+<p>####在你开始之前</p>
+<p>1,    你需要确定你已经注册了 DisQus<br>2,    有权限编辑网站上的代码<br>3,    获取你的短域名，就是上面说的那个 Shortname</p>
+<p>####获取代码</p>
+<p>很愉快的是，DisQus 已经为我们生成了这样的一段代码：</p>
+<pre class="html" name="colorcode">
+&lt;div id="disqus_thread"&gt;&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+var disqus_shortname = 'example'; // 注意，这里的 example 要替换为你自己的短域名
+/* * * 下面这些不需要改动 * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+&lt;/script&gt;
+&lt;noscript&gt;Please enable JavaScript to view the &lt;a href="http://disqus.com/?ref_noscript"&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;
+&lt;a href="http://disqus.com" class="dsq-brlink"&gt;blog comments powered by &lt;span class="logo-disqus"&gt;Disqus&lt;/span&gt;&lt;/a&gt;
+</pre>
+
+<p>####嵌入到网页里面去</p>
+<p>对于一般的博客来说，评论都是放在文章页面的。嗯。你懂的。<br>对于 GitHub Page 来说，你可以把上面这段代码，嵌入到你的 layout 里面的 post.html<br>里面，放在最后就好了。( 当然，每个人的命名方式不同，post 可以是 article 什么的。)</p>
+<p>###完成了？</p>
+<p>嗯，很简单的。基本完成了。<br>有些什么你需要关注的呢？</p>
+<p>####还有其他功能的</p>
+<p>DisQus 还有其他功能的。例如你可以手动配置你的评论；例如你可以将评论计数加到你的<br>博客里面去。就如同上面一样，也是添加一段 Js 。</p>
+<p>####不满意你的评论主题</p>
+<p>假如你对 DisQus 的显示效果不是很满意的话，好像还有切换主题功能的（我还没看到，等<br>研究下）。再没有的话，写 CSS 覆盖掉吧。DisQus 返回的 Js 数据生成的 DOM 结构是不<br>变的，你可以像禅意花园一样去设计你喜欢的评论。</p>
+<p>###我还关注的</p>
+<p>为什么要使用 DisQus 呢？因为它可以统一管理很多个网站的评论，还可以做一些统计。而<br>且对于那些痛恨的 spam ，DisQus 也可以拦截掉，个人感觉很方便，使用起来也是不错的。</p>
+<p>安装好了 DisQus 之后，虽然功能上实现了，但我觉得 Js 请求数还是稍微多了一些。不下<br>10条请求，网络不好的话，要使评论模块渲染出来还是比较久的等待时间。</p>
+<p>我还想有个功能，就是关闭评论的功能，还没研究有没有。哈哈。</p>
+<p>Ok，今天到这，欢迎留言。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/19/hello-world/" data-id="cioe23g2c000nnk2cqy1a3o8e" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2011/11/15/use-disqus-for-your-post/" data-id="cioe23g130001nk2cb1o4ka9z" class="article-share-link">Share</a>
       
       
     </footer>
@@ -110,10 +141,19 @@ Quick">
     
 <nav id="article-nav">
   
+    <a href="/2011/11/22/mac-wget/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          mac 上安装 wget
+        
+      </div>
+    </a>
   
-    <a href="/2016/04/02/2014-10-9-UITableview的优化/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2011/09/24/jekyll-more/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">UITableView的优化</div>
+      <div class="article-nav-title">Jekyll 的一些函数和技巧</div>
     </a>
   
 </nav>
